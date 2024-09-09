@@ -5,6 +5,6 @@
 
 int main()
 {
-    printf("Hello world!\n");
+    printf("Hello MemManiacs!\n");
     return 0;
 }

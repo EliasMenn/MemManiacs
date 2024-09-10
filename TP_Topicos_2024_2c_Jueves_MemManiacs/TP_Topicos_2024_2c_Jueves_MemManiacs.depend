@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1725998634 source:c:\users\user\desktop\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\functions.c
+	"Headers.h"
+
+1725993652 c:\users\user\desktop\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\headers.h
+	<stdio.h>
+	<stdlib.h>
+
+1725993303 source:c:\users\user\desktop\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Headers.h"
+

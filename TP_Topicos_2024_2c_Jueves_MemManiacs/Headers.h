@@ -1,6 +1,7 @@
 #ifndef HEADERS_H_INCLUDED
 #define HEADERS_H_INCLUDED
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct
 {
@@ -12,6 +13,6 @@ typedef struct
     int NumForm;
 }DatosStruct;
 
-void AssignFile();
+int assfile();
 
 #endif // HEADERS_H_INCLUDED

@@ -1,6 +1,6 @@
 #include "Headers.h"
 
-int assfile()
+bool assfile()
 {
     FILE* arch;
     int size;
@@ -8,7 +8,7 @@ int assfile()
     if(arch == NULL)
     {
         printf("Error opening");
-        exit(1);
+        return false;
     }
     fseek(arch,0,SEEK_END);
     size = ftell(arch);
@@ -16,13 +16,20 @@ int assfile()
     start = malloc(size); //utilizamos el tama�o de archivo en bytes para asignar memoria
     if (start == NULL)
     {
+        fclose(arch);
         printf("Error al momento de asignar memoria");
-        exit(2);
+        //cambie por un return porque el exit sale del programa
+        return false;
     }
-    end = start+size;
+    //si no se pone el menos 1 entonces se pasa de la memoria alocada
+    end = start+size-1;
     printf("%p, %p", start, end);
+    //2^10Bytes=1KByte
+    //2^10KBytes=1GByte
+    //2^20Bytes=1GByte
+    /*//Malloc(1048576)=1GB de ram*/
     free(start);
-    return 0;
+    return true;
 }
 //funcion de ordenamiento
 void ordenamientoSeleccion(Vector* vec,COMPARE cmpCampo1,COMPARE cmpCampo2)

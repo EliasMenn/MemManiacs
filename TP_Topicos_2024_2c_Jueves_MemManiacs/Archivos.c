@@ -22,10 +22,13 @@ int muestra_binario()
 
 bool carga_estructura(char* registro,DatosStruct* dat)
 {
+    //esto es para la conversion los float solo lee el . no la ,
     char * coma=strrchr(registro,',');
     if(coma)
         *coma='.';
+    //va a ir escaneando los datos en la parte de las comillas solo hay que poner el caracter de escape para las comillas
     int estado=sscanf(registro,"%d|%d|\"%d\"|\"%d\"|%f|%d",&dat->Anio,&dat->Mes,&dat->CodEmp,&dat->CodProd,&dat->Precio,&dat->NumForm);
+    //esto es para confirmar de que leyo todo
     return estado==DATOS_CAMPOS;
 }
 void imprimirStruct(DatosStruct* dat)

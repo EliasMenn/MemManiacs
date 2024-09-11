@@ -19,7 +19,7 @@
 	<stdlib.h>
 	<stdbool.h>
 
-1726093086 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\main.c
+1726096847 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\main.c
 	<stdio.h>
 	<stdlib.h>
 	"Headers.h"
@@ -32,6 +32,7 @@
 	"Headers.h"
 	<string.h>
 
-1726093335 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\archivos.c
+1726097033 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\archivos.c
 	"Headers.h"
+	"string.h"
 

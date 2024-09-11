@@ -13,7 +13,7 @@ int main()
     char buffer[256];
     fgets(buffer,256,arch);
     fclose(arch);
-    carga_estructura(buffer,dat);
+    bool estado=carga_estructura(buffer,&dat);
     imprimirStruct(dat);
     return 0;
 }

@@ -1,4 +1,6 @@
 #include "Headers.h"
+#define DATOS_CAMPOS 6
+#include "string.h"
 //voy a probar con dato
 /*
 int muestra_binario()
@@ -18,15 +20,15 @@ int muestra_binario()
     return TODO_OK;
 }*/
 
-void carga_estructura(const char* registro,DatosStruct* dat)
+bool carga_estructura(char* registro,DatosStruct* dat)
 {
-    const char* auxc=registro;
-    DatosStruct auxd=*dat;
-    sscanf(registro,"%d|%d|%d|%d|%f|%d",&dat->Anio,&dat->Mes,&dat->CodEmp,&dat->CodProd,&dat->Precio,&dat->NumForm);
-    auxd=*dat;
+    char * coma=strrchr(registro,',');
+    if(coma)
+        *coma='.';
+    int estado=sscanf(registro,"%d|%d|\"%d\"|\"%d\"|%f|%d",&dat->Anio,&dat->Mes,&dat->CodEmp,&dat->CodProd,&dat->Precio,&dat->NumForm);
+    return estado==DATOS_CAMPOS;
 }
 void imprimirStruct(DatosStruct* dat)
 {
-    DatosStruct auxd=*dat;
     printf("%d|%d|%d|%d|%f|%d",dat->Anio,dat->Mes,dat->CodEmp,dat->CodProd,dat->Precio,dat->NumForm);
 }

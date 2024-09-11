@@ -36,13 +36,15 @@ typedef struct
 Especificaciones;
 //tipo de funcion comparacion se debe hacer una funcion que tenga la misma estructura(struct ja)
 typedef int (COMPARE)(const void* e1,const void* e2);
+//tipo de funcion accion hace cosas
+typedef bool (Accion)(const void* e1,const void* e2);
 //ordenamientoSeleccion
 void ordenamientoSeleccion(Vector* vec,COMPARE cmpCampo1,COMPARE cmpCampo2);
 void* BuscarElemMenor(void* inicio,void* fin,size_t tamElem,COMPARE cmpCampo1,COMPARE cmpCampo2);
-void Intercambio(void*e1,void* menor,size_t tamElem);
+bool Intercambio(void*e1,void* menor,size_t tamElem);
 int cmpCodProd(const void* e1,const void* e2);
 int cmpCodEmp(const void* e1,const void* e2);
 //ordenamientoInsersion
-void ordenamientoInserccion(Vector* vec,COMPARE cmpCampo1);
+bool ordenamientoInserccion(Vector* vec,COMPARE cmpCampo1);
 int cmpCodProdEspe(const void* e1,const void* e2);
 #endif // HEADERS_H_INCLUDED

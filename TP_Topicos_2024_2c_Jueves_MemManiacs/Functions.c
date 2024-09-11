@@ -1,12 +1,14 @@
 #include "Headers.h"
-
-bool assfile()
+#define ERR_ARCH -1
+#define ERR_MEM -2
+#define TODO_OK 0
+int assfile()
 {
     FILE* arch= fopen("files\\DATOS.txt","rb");
     if(arch == NULL)
     {
-        printf("Error opening");
-        return false;
+        puts("Error opening");
+        return ERR_ARCH;
     }
     fseek(arch,0,SEEK_END);
     int size = ftell(arch);
@@ -15,14 +17,15 @@ bool assfile()
     if (start == NULL)
     {
         fclose(arch);
-        printf("Error al momento de asignar memoria");
+        puts("Error al momento de asignar memoria");
         //cambie por un return porque el exit sale del programa
-        return false;
+        return ERR_MEM;
     }
     //si no se pone el menos 1 entonces se pasa de la memoria alocada
     char* end = start+size-1;
-    printf("%p, %p", start, end);
+    printf("%p, %p\n", start, end);
+    puts("Todo OK\n");
     fclose(arch);
     free(start);
-    return true;
+    return TODO_OK;
 }

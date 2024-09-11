@@ -6,6 +6,6 @@
 int main()
 {
     printf("Hello MemManiacs!\n");
-    assfile();
-    return 0;
+    int estado=assfile();
+    return estado;
 }

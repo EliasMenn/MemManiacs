@@ -1,6 +1,8 @@
 #include "Headers.h"
 #define CAP_INI 10
 #define FACTINC 1.5
+#include <string.h>
+
 bool redimensionarVector(Vector* vec,size_t nTam);
 //quizas convenga mas hacer un header especifico para el vector
 bool vectorCrear(Vector* vec,size_t tElem)
@@ -30,7 +32,7 @@ bool vectorVaciar(Vector* vec)
     //esto para devolver memoria creo que al redimensionar a algo mas pequeño no deberia fallar
     vec->cap=CAP_INI;
     bool estado=redimensionarVector(vec,CAP_INI);
-    return estado;    
+    return estado;
 }
 //lo vimos en clase
 bool redimensionarVector(Vector* vec,size_t nTam)

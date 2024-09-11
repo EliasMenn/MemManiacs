@@ -11,3 +11,27 @@
 	<stdlib.h>
 	"Headers.h"
 
+1726091142 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\functions.c
+	"Headers.h"
+
+1726075576 c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\headers.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1726093086 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Headers.h"
+
+1726093361 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\ordenamiento.c
+	"Headers.h"
+	<string.h>
+
+1726093387 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\vector.c
+	"Headers.h"
+	<string.h>
+
+1726093335 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\archivos.c
+	"Headers.h"
+

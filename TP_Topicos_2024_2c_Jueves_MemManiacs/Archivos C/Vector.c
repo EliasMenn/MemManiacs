@@ -73,11 +73,6 @@ bool vectorInsertarFin(Vector* vec,void* dato)
         if(!redimensionarVector(vec,vec->cap*FACTINC))
             return false;
     }
-    void*fin=vec->vec+(vec->ce)*vec->tElem;
-    void*i=vec->vec;
-    //nota quizas convenga hacer una version que no acepte duplicados, depende del criterio de la persona preguntar al profe
-    while (i<fin)
-        i+=vec->tElem;
-    memcpy(i,dato,vec->tElem);
+    memcpy(vec->vec+vec->ce*vec->tElem,dato,vec->tElem)
     return true;
 }

@@ -31,11 +31,20 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Archivos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Functions.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Headers.h">
 			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Ordenamiento.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Vector.c">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />

@@ -35,6 +35,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Headers/Normalizar.h" />
+		<Unit filename="Headers/String.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

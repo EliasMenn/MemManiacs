@@ -12,7 +12,14 @@ typedef struct
     float Precio;
     int NumForm;
 }DatosStruct;
-
+typedef struct
+{
+    FILE* arch;
+    void* elem;
+    size_t tElem;
+    bool fin;
+}
+Archivo;
 int assfile();
 
 #define TAMNOMPROD 50

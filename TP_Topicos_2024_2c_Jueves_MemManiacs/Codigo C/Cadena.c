@@ -1,9 +1,10 @@
-#include "..\Headers\String.h"
+#include "..\Headers\Cadena.h"
+#include "..\Headers\Normalizar.h"
 #include <stdlib.h>
 #define NULLARG 1
 #define SIN_MEM 2
 #define TODO_OK 0
-int cadenaCrear(Cadena* cad,const* copiar)
+int cadenaCrear(Cadena* cad,const char* copiar)
 {
     if(!copiar)
         return NULLARG;
@@ -29,7 +30,7 @@ int cadenaComparar(const Cadena* c1,const Cadena* c2)
         return -404;
     const char* cursor1=c1->inicio;
     const char* cursor2=c2->inicio;
-    while(*cursor1!='\0'&&*cursor2!='\0'&&(*cursor1-*cursor2)==0)
+    while(*cursor1!='\0'&&*cursor2!='\0'&&(*cursor1==*cursor2))
     {
         cursor1++;
         cursor2++;
@@ -42,8 +43,9 @@ int cadenaCompararIgnorar(const Cadena* c1,const Cadena* c2)
         return -404;
     const char* cursor1=c1->inicio;
     const char* cursor2=c2->inicio;
+    char letra1,letra2;
     //quizas se requiera una funcion que verifique que sean mayus o minus o tilde
-    while(*cursor1!='\0'&&*cursor2!='\0'&&(EsLetra(*cursor1)-EsLetra(*cursor2)==0))
+    while((letra1=*cursor1)!='\0'&&(letra2=*cursor2)!='\0'&&((EsLetra(letra1))==(EsLetra(letra2))))
     {
         cursor1++;
         cursor2++;
@@ -60,7 +62,7 @@ size_t cadenaTamanio(const Cadena* c1)
     {
         cursor++;
     }
-    return cursor-c1;
+    return cursor-c1->inicio;
 }
 char* cadenaBuscarCaracter(const Cadena* cadena,char bus)
 {
@@ -73,7 +75,7 @@ char* cadenaBuscarCaracter(const Cadena* cadena,char bus)
     }
     if(*cursor!=bus)
         return NULL;
-    return cursor;
+    return (char*)cursor;
 }
 char* cadenaBuscarCaracterFin(const Cadena* cadena,char bus)
 {
@@ -85,13 +87,13 @@ char* cadenaBuscarCaracterFin(const Cadena* cadena,char bus)
     {
         if(*cursor==bus)
         {
-            ultimaLugar=cursor;
+            ultimaLugar=(char*)cursor;
         }
         cursor++;
     }
     if(*cursor==bus)
     {
-        return cursor;
+        return (char*)cursor;
     }
     return ultimaLugar;
 }
@@ -111,7 +113,7 @@ char* cadenaCopia(Cadena*destino,const Cadena* fuente)
     }
     *cursorD='\0';
     destino->letras=fuente->letras;
-    return destino;
+    return destino->inicio;
 }
 char* cadenaConcatenar(Cadena*destino,const Cadena* fuente)
 {
@@ -128,11 +130,11 @@ char* cadenaConcatenar(Cadena*destino,const Cadena* fuente)
     while (*cursorF!='\0')
     {
         *cursorD=*cursorF;
-        *cursorD++;
+        cursorD++;
         cursorF++;
     }
     *cursorD='\0';
-    return destino;
+    return destino->inicio;
 }
 //para hacer memcpy
 //memmove?

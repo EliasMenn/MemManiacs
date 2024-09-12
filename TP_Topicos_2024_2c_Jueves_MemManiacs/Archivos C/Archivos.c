@@ -1,4 +1,4 @@
-#include "Headers.h"
+#include "../Headers/Headers.h"
 #define DATOS_CAMPOS 6
 #include "string.h"
 //voy a probar con dato

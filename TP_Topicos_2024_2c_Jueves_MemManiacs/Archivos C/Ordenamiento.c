@@ -1,4 +1,4 @@
-#include "Headers.h"
+#include "../Headers/Headers.h"
 #include <string.h>
 //funcion de ordenamiento
 void ordenamientoSeleccion(Vector* vec,COMPARE cmpCampo1,COMPARE cmpCampo2)

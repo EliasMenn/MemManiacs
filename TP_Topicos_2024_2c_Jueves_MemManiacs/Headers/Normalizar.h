@@ -38,8 +38,8 @@
     }\\
 )
 #define EsMinus(car) (((car)>='a'&&(car)<='z')?true:false)
-#define EsLetra(car) (EsMayus(car)||EsMinus(car)?true:false)
 #define EsTilde(car) (EsMayusTilde(car)||EsMinusTilde(car)?true:false)
+#define EsLetra(car) (EsMayus(car)||EsMinus(car)||EsTilde?true:false)
 //se asume que se valido antes
 #define MinAMay (car) ((car)-'a'+'A')
 #define MayAMin (car) ((car)-'A'+'a')
@@ -83,8 +83,6 @@
 #define MayAMin (car) (EsMayus(car)?(car)-'A'+'a':car)
 */
 
-//esto para medir el los ciclos de una cpu
-//deberia ser equivalente a tu velocidad de cpu /tus nucleos
 /*
 #include <time.h>
 clock_t start, end;

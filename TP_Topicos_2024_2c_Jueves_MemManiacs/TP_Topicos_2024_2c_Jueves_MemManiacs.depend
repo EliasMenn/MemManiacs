@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1726160640 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Headers\Normalizar.h"
+
+1726160709 c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\headers\normalizar.h
+	<stdbool.h>
+	<time.h>
+
+1726160440 source:c:\users\nuevo usuario\documents\visual code\trabajo practico 2\memmaniacs\tp_topicos_2024_2c_jueves_memmaniacs\codigo c\functions.c
+

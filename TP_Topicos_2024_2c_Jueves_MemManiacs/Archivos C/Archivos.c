@@ -24,6 +24,7 @@ bool carga_estructura(char* registro,DatosStruct* dat)
 {
     //esto es para la conversion los float solo lee el . no la ,
     char * coma=strrchr(registro,',');
+    //irse a la coma y ponerle punto retornar NULL si no se encontro
     if(coma)
         *coma='.';
     //va a ir escaneando los datos en la parte de las comillas solo hay que poner el caracter de escape para las comillas

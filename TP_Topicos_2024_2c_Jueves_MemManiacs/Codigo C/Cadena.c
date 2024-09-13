@@ -4,7 +4,7 @@
 #define NULLARG 1
 #define SIN_MEM 2
 #define TODO_OK 0
-int cadenaCrear(Cadena* cad,const char* copiar)
+int cadenaCrear(Cadena* cad,const char* copiar,size_t tamExtra)
 {
     if(!copiar)
         return NULLARG;
@@ -13,21 +13,34 @@ int cadenaCrear(Cadena* cad,const char* copiar)
     {
         cursorC++;
     }
-    cad->letras=cursorC-copiar+1;
-    cad->inicio=malloc(cad->letras);//sizeof(char)=1
+    cad->letras=cursorC-copiar;
+    cad->cap=cad->letras+1+tamExtra;
+    cad->cursor=cad->inicio=malloc(cad->cap);//sizeof(char)=1
     if(!cad)
     {
-        cad->letras=0;
+        cad->letras=cad->cap=0;
         return SIN_MEM;
     }
-    cad->cap=cad->letras+10;
     return TODO_OK;
 }
 int cadenaComparar(const Cadena* c1,const Cadena* c2)
 {
     //para discutir
     if(!(c1&&c2))
-        return -404;
+        return NULLARG;
+    //pense que seria bueno poner una verificacion para ver si eran del mismo tamaño, sin embargo eso no lo veo y importante y aun asi se deberia ordenar
+    //ejemplo
+    //civilization
+    //civilization 27
+    //civilization 800
+    //civilization 7
+    //civilization 41
+    //deberia ordenarse a
+    //civilization
+    //civilization 7
+    //civilization 27
+    //civilization 41
+    //civilization 800
     const char* cursor1=c1->inicio;
     const char* cursor2=c2->inicio;
     while(*cursor1!='\0'&&*cursor2!='\0'&&(*cursor1==*cursor2))
@@ -40,7 +53,7 @@ int cadenaComparar(const Cadena* c1,const Cadena* c2)
 int cadenaCompararIgnorar(const Cadena* c1,const Cadena* c2)
 {
     if(!(c1&&c2))
-        return -404;
+        return NULLARG;
     const char* cursor1=c1->inicio;
     const char* cursor2=c2->inicio;
     char letra1,letra2;
@@ -54,22 +67,17 @@ int cadenaCompararIgnorar(const Cadena* c1,const Cadena* c2)
 }
 size_t cadenaTamanio(const Cadena* c1)
 {
-    //porque no genera error?
+//No se si va a aceptar el -1 me parece que lo va a convertir
     if(!c1)
         return -1;
-    const char* cursor=c1->inicio;
-    while (*cursor!='\0')
-    {
-        cursor++;
-    }
-    return cursor-c1->inicio;
+    return c1->letras;
 }
 char* cadenaBuscarCaracter(const Cadena* cadena,char bus)
 {
     if(!cadena)
         return NULL;
     const char* cursor=cadena->inicio;
-    while(*cursor!=bus)
+    while(*cursor!='\0'&&*cursor!=bus)
     {
         cursor++;
     }
@@ -101,7 +109,7 @@ char* cadenaCopia(Cadena*destino,const Cadena* fuente)
 {
     if(!(destino&&fuente))
         return NULL;
-    if(destino->cap<fuente->cap)
+    if(destino->cap<fuente->letras)
         return NULL;
     char* cursorD=destino->inicio;
     char* cursorF=fuente->inicio;
@@ -121,12 +129,8 @@ char* cadenaConcatenar(Cadena*destino,const Cadena* fuente)
         return NULL;
     if(destino->cap<destino->letras+fuente->letras)
         return NULL;
-    char* cursorD=destino->inicio;
+    char* cursorD=destino->inicio+destino->letras+1;
     char* cursorF=fuente->inicio;
-    while (*cursorD!='\0')
-    {
-        cursorD++;
-    }
     while (*cursorF!='\0')
     {
         *cursorD=*cursorF;
@@ -134,6 +138,102 @@ char* cadenaConcatenar(Cadena*destino,const Cadena* fuente)
         cursorF++;
     }
     *cursorD='\0';
+    return destino->inicio;
+}
+int mem_cmp(const void* dir1,const void* dir2,size_t tElem)
+{
+    const char *cur1=dir1;
+    const char *cur2=dir2;
+    while(*cur1==*cur2&&tElem>0)
+    {
+        cur1++;
+        cur2++;
+        tElem--;
+    }
+    return *cur1-*cur2;
+}
+bool cadenaVaciar(Cadena* cadena)
+{
+    //esto no es necesario hagan la una funcion void si les parece
+    if(!cadena)
+        return false;
+    cadena->letras=cadena->cap=0;
+    free(cadena->inicio);
+    cadena->inicio=cadena->cursor=NULL;
+    return true;
+}
+int cadenaCursorCambiarCararacter(Cadena* cadena,char car)
+{
+    //'\0' es el caracter NULO
+    //!cadena da verdadero si es NULL
+    if(!cadena||cadena->cursor=='\0')
+        return NULLARG;
+    cadena->cursor=car;
+    return TODO_OK;
+}
+bool cadenaCursorReiniciar(Cadena* cad)
+{
+    if(!cad==NULL)
+        return false;
+    cad->cursor=cad->inicio;
+    return true;
+}
+bool cadenaCursorMoverPos(Cadena* cad,size_t mov)
+{
+    if(!cad||cad->inicio+cad->letras+1<cad->cursor+mov)
+        return false;
+    cad->cursor+=mov;
+    return true;
+}
+bool cadenaCursorEsElem(Cadena* cad,char car)
+{
+    if(!cad)
+        return false;
+    return *cad->cursor==car; 
+}
+bool cadenaCursorMoverAElem(Cadena* cad,char car)
+{
+    if(!cad)
+        return false;
+    while (*cad->cursor!='\0'&&*cad->cursor!=car)
+    {
+        cad->cursor++;
+    }
+    return *cad->cursor==car;
+}
+bool cadenaCursorMoverAElemIni(Cadena* cad,char car)
+{
+    if(!cad)
+        return false;
+    cad->cursor=cad->inicio;
+    while (*cad->cursor!='\0'&&*cad->cursor!=car)
+    {
+        cad->cursor++;
+    }
+    return *cad->cursor==car;
+}
+bool cadenaAñadirCaracter(Cadena* cad,char car)
+{
+    if(cad->letras+1==cad->cap||!cad)
+        return false;
+    cad->cursor=cad->inicio+cad->letras+1;
+    *cad->cursor=car;
+    cad->cursor++;
+    cad->cursor='\0';
+    return true;
+}
+char* cadenaConcatenarLimite(Cadena* destino,const Cadena* fuente,size_t BytesACopiar)
+{
+    const char *curF=fuente->inicio;
+    char *curD=destino->inicio+destino->letras+1;
+    while(*curF!='\0'&&BytesACopiar>0)
+    {
+        *curD=*curF;
+        curD++;
+        curF++;
+        BytesACopiar--;
+    }
+    *curD='\0';
     return destino->inicio;
 }
 //para hacer memcpy

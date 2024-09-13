@@ -31,9 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Codigo C/Cadena.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Codigo C/Functions.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Headers/Cadena.h" />
 		<Unit filename="Headers/Normalizar.h" />
 		<Unit filename="Headers/String.h" />
 		<Unit filename="main.c">

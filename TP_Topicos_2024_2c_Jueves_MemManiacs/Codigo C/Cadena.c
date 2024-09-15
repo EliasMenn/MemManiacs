@@ -1,9 +1,7 @@
 #include "..\Headers\Cadena.h"
 #include "..\Headers\Normalizar.h"
 #include <stdlib.h>
-#define NULLARG 1
-#define SIN_MEM 2
-#define TODO_OK 0
+#include <stdio.h>
 int cadenaCrear(Cadena* cad,const char* copiar,size_t tamExtra)
 {
     if(!copiar)
@@ -21,6 +19,15 @@ int cadenaCrear(Cadena* cad,const char* copiar,size_t tamExtra)
         cad->letras=cad->cap=0;
         return SIN_MEM;
     }
+    cursorC=copiar;
+    while (*cursorC!='\0')
+    {
+        *cad->cursor=*cursorC;
+        cursorC++;
+        cad->cursor++;
+    }
+    *cad->cursor='\0';
+    cad->cursor=cad->inicio;
     return TODO_OK;
 }
 int cadenaComparar(const Cadena* c1,const Cadena* c2)
@@ -166,14 +173,14 @@ int cadenaCursorCambiarCararacter(Cadena* cadena,char car)
 {
     //'\0' es el caracter NULO
     //!cadena da verdadero si es NULL
-    if(!cadena||cadena->cursor=='\0')
+    if(!cadena||*cadena->cursor=='\0')
         return NULLARG;
-    cadena->cursor=car;
+    *cadena->cursor=car;
     return TODO_OK;
 }
 bool cadenaCursorReiniciar(Cadena* cad)
 {
-    if(!cad==NULL)
+    if(!cad)
         return false;
     cad->cursor=cad->inicio;
     return true;
@@ -189,7 +196,7 @@ bool cadenaCursorEsElem(Cadena* cad,char car)
 {
     if(!cad)
         return false;
-    return *cad->cursor==car; 
+    return *cad->cursor==car;
 }
 bool cadenaCursorMoverAElem(Cadena* cad,char car)
 {
@@ -212,7 +219,7 @@ bool cadenaCursorMoverAElemIni(Cadena* cad,char car)
     }
     return *cad->cursor==car;
 }
-bool cadenaAñadirCaracter(Cadena* cad,char car)
+bool cadenaAnadirCaracter(Cadena* cad,char car)
 {
     if(cad->letras+1==cad->cap||!cad)
         return false;
@@ -224,6 +231,8 @@ bool cadenaAñadirCaracter(Cadena* cad,char car)
 }
 char* cadenaConcatenarLimite(Cadena* destino,const Cadena* fuente,size_t BytesACopiar)
 {
+    if(!destino||destino->cap<BytesACopiar)
+        return NULL;
     const char *curF=fuente->inicio;
     char *curD=destino->inicio+destino->letras+1;
     while(*curF!='\0'&&BytesACopiar>0)
@@ -236,5 +245,17 @@ char* cadenaConcatenarLimite(Cadena* destino,const Cadena* fuente,size_t BytesAC
     *curD='\0';
     return destino->inicio;
 }
-//para hacer memcpy
-//memmove?
+bool cadenaMostrar(const Cadena* cad)
+{
+    if(!cad)
+        return false;
+    puts(cad->inicio);
+    return true;
+}
+bool cadenaCursorMostrar(const Cadena* cad)
+{
+    if(!cad)
+        return false;
+    printf("La posicion del cursor es en %I64d\n",cad->cursor-cad->inicio+1);
+    return true;
+}

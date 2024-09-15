@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "Headers\Normalizar.h"
+#include "Headers\Cadena.h"
 void ejemplotilde(char car);
 long long potencia(int base,int exp);
 int main()
@@ -12,16 +13,22 @@ int main()
     clock_t start, end;
     float elapsed_time;
     start = clock();
-    for(long long i=0;i<10000/*potencia(2,63)-1*/;i=i+1)
-    {
-        if(i%1==0)
-            printf("Div 1\n");
-        if(i%2==0)
-            printf("Div 2\n");
-        if(i%5==0)
-            printf("Div 5\n");
-        printf("i= %I64d\n",i);
-    }
+    //empieza el contador
+    Cadena cad1;
+    if(cadenaCrear(&cad1,"Holi",10)!=TODO_OK)
+        return -1;
+    Cadena cad2;
+    if(cadenaCrear(&cad2,"Chauchis",10)!=TODO_OK)
+        return -2;
+    cadenaMostrar(&cad1);
+    cadenaCursorMostrar(&cad1);
+    cadenaCopia(&cad1,&cad2);
+    cadenaCursorMoverPos(&cad1,4);
+    cadenaMostrar(&cad1);
+    cadenaCursorMostrar(&cad1);
+    cadenaVaciar(&cad1);
+    cadenaVaciar(&cad2);
+    //termina el contador
     end = clock();
     elapsed_time = (float)(end - start) / CLOCKS_PER_SEC;
     printf("%ld, %ld\n",end,start);
@@ -32,17 +39,4 @@ void ejemplotilde(char car)
 {
     printf("%c, %d\n",car,car);
 }
-//nota esta hecha lenta a proposito
-long long potencia(int base,int exp)
-{
-    long long res;
-    for(int i=2;i<exp;i++)
-    {
-        if(i==2)
-        {
-            res=1;
-        }
-        res*=base;
-    }
-    return res;
-}
+
